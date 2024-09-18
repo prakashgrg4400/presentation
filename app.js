@@ -1,49 +1,61 @@
 
 const slides = [
     {
-        title: "DO I HAVE IT ? , YES I HAVE IT",
-        content: "A new platform connecting customers with local sellers",
+        title: "DO YOU HAVE IT ? <br> YES I HAVE IT !",
+        content: `<h3>A new platform connecting customers with local sellers</h3>
+            <hr>
+                            <div style="height:20px"></div>
+                            <h4>by</h4>
+                            <div style="height:30px"></div>
+                    <div class='names' style="display:flex;flex-direction:column">
+                <span>Kiran Raj Dhakal </span>
+                <span>Subash Rimal </span>
+                <span>Prakash Gurung </span>
+                <span>Jenisha Timilsina </span>
+                    </div>
+
+                    `,
     },
     {
         title: "Problems with Existing Services",
         content: [
-            "Limited personalization: Mass-market products don't always meet specific customer needs.",
-            "Lack of local focus: Often prioritizes large retailers over local businesses.",
-            "Fixed pricing: Little room for negotiation or bidding.",
-            "Standardized products: Difficult to find unique or custom items.",
-            "Overwhelming choice: Too many options can lead to decision paralysis.",
-            "Impersonal shopping experience: Lacks the human touch of local retail.",
-            "Environmental concerns: Long-distance shipping increases carbon footprint.",
-            "Limited offline integration: Primarily focused on online transactions.",
-            "Uniform seller requirements: Can be challenging for small or niche sellers to compete.",
-            "Limited price transparency: Customers can't easily compare prices from multiple sellers.",
+            "<span>Limited personalization</span>:  Mass-market products don't always meet specific customer needs.",
+            "<span>Lack of local focus</span>:  Often prioritizes large retailers over local businesses.",
+            "<span>Fixed pricing</span>:  Little room for negotiation or bidding.",
+            "<span>Standardized products</span>:  Difficult to find unique or custom items.",
+            "<span>Overwhelming choice</span>:  Too many options can lead to decision paralysis.",
+            "<span>Impersonal shopping experience</span>:  Lacks the human touch of local retail.",
+            "<span>Environmental concerns</span>:  Long-distance shipping increases carbon footprint.",
+            "<span>Limited offline integration</span>:  Primarily focused on online transactions.",
+            "<span>Uniform seller requirements</span>:  Can be challenging for small or niche sellers to compete.",
+            "<span>Limited price transparency</span>:  Customers can't easily compare prices from multiple sellers.",
         ],
     },
     {
         title: "Our Solutions",
         content: [
-            "Customization: Allows customers to upload photos of specific items they want.",
-            "Local focus: Connects customers with nearby sellers, supporting local businesses.",
-            "Dynamic pricing: Sellers can bid on items, potentially offering better deals.",
-            "Unique products: Easier to find specific or custom items based on customer photos.",
-            "Curated options: Limits choices to local sellers, reducing overwhelm.",
-            "Personal touch: Enables direct communication between customers and local sellers.",
-            "Reduced environmental impact: Focuses on local transactions, reducing shipping distances.",
-            "Online-to-offline integration: Offers both delivery and in-store purchase options.",
-            "Flexible seller participation: Lower barriers for small or niche sellers to participate.",
-            "Price transparency: Customers can compare bids from multiple sellers.",
-            "Customer empowerment: Gives customers more control over their shopping experience.",
-            "Community building: Strengthens connections between local buyers and sellers.",
+            "<span>Customization</span>: Allows customers to upload photos of specific items they want.",
+            "<span>Local focus</span>: Connects customers with nearby sellers, supporting local businesses.",
+            "<span>Dynamic pricing</span>: Sellers can bid on items, potentially offering better deals.",
+            "<span>Unique products</span>: Easier to find specific or custom items based on customer photos.",
+            "<span>Curated options</span>: Limits choices to local sellers, reducing overwhelm.",
+            "<span>Personal touch</span>: Enables direct communication between customers and local sellers.",
+            "<span>Reduced environmental impact</span>: Focuses on local transactions, reducing shipping distances.",
+            "<span>Online-to-offline integration</span>: Offers both delivery and in-store purchase options.",
+            "<span>Flexible seller participation</span>: Lower barriers for small or niche sellers to participate.",
+            "<span>Price transparency</span>: Customers can compare bids from multiple sellers.",
+            "<span>Customer empowerment</span>: Gives customers more control over their shopping experience.",
+            "<span>Community building</span>: Strengthens connections between local buyers and sellers.",
         ],
     },
     {
         title: "How It Works",
         content: [
-            "1. Customers upload photos of desired items",
-            "2. Local sellers receive notifications",
-            "3. Sellers bid on items",
-            "4. Customers choose best offer",
-            "5. Option for in-store pickup or home delivery",
+            "Customers upload photos of desired items",
+            "Local sellers receive notifications",
+            "Sellers bid on items",
+            "Customers choose best offer",
+            "Option for in-store pickup or home delivery",
         ],
     },
     {
@@ -75,40 +87,45 @@ const showCurrentSlider = document.querySelector("span");
 
 function handleContent()
 {
-    title.textContent = slides[slider].title;
-    showCurrentSlider.textContent = slider
+    title.innerHTML = slides[slider].title;
+    showCurrentSlider.innerHTML = slider
 
     if(Array.isArray(slides[slider].content)){
-        const ul = document.createElement("ul");
+        const ul = document.createElement("ol");
+        ul.setAttribute("type","1")
         
         slides[slider].content.forEach(cont=>{
             const li = document.createElement("li");
-            li.textContent = cont ;
+            li.innerHTML = cont ;
             ul.append(li);
         })
         
         content.append(ul);
     }else{
         const p = document.createElement("p");
-        p.textContent = slides[slider].content;
+        p.innerHTML = slides[slider].content;
         content.append(p);
     }
 }
 handleContent();
 
 previous.addEventListener("click" , (event)=>{
-    title.textContent = "" ;
-    content.textContent = "";
+    title.innerHTML = "" ;
+    content.innerHTML = "";
     
-    slider = (slider - 1 + slides.length) % slides.length
+    if(slider-1 < 0){
+        slider=0
+    }else{
+        slider = (slider - 1 + slides.length) % slides.length
+    }
 
     handleContent();
 
 })
 
 next.addEventListener("click" , (event)=>{
-    title.textContent = "" ;
-    content.textContent = "";
+    title.innerHTML = "" ;
+    content.innerHTML = "";    
 
     slider = (slider+1)%slides.length ;
     
