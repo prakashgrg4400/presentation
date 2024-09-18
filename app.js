@@ -1,14 +1,17 @@
 
 const slides = [
     {
-        title: "DO I HAVE IT ? , YES I HAVE IT",
+        title: "DO YOU HAVE IT ? <br> YES I HAVE IT !",
         content: `<h3>A new platform connecting customers with local sellers</h3>
-        <h4>by</h4>
-                    <div class='names'>
-                <li>Kiran Raj Dhakal </li>
-                <li>Subash Rimal </li>
-                <li>Prakash Gurung </li>
-                <li>Jenisha Timilsina </li>
+            <hr>
+                            <div style="height:20px"></div>
+                            <h4>by</h4>
+                            <div style="height:30px"></div>
+                    <div class='names' style="display:flex;flex-direction:column">
+                <span>Kiran Raj Dhakal </span>
+                <span>Subash Rimal </span>
+                <span>Prakash Gurung </span>
+                <span>Jenisha Timilsina </span>
                     </div>
 
                     `,
@@ -110,7 +113,11 @@ previous.addEventListener("click" , (event)=>{
     title.innerHTML = "" ;
     content.innerHTML = "";
     
-    slider = (slider - 1 + slides.length) % slides.length
+    if(slider-1 < 0){
+        slider=0
+    }else{
+        slider = (slider - 1 + slides.length) % slides.length
+    }
 
     handleContent();
 
@@ -118,7 +125,7 @@ previous.addEventListener("click" , (event)=>{
 
 next.addEventListener("click" , (event)=>{
     title.innerHTML = "" ;
-    content.innerHTML = "";
+    content.innerHTML = "";    
 
     slider = (slider+1)%slides.length ;
     
